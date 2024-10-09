@@ -28,7 +28,7 @@
 )
 
 #set document(
-  title: "Distributed Deep Learning HW 1",
+  title: "Distributed Deep Learning HW 2",
   author: ("Rajeev Atla"),
   date: auto
 )
@@ -49,11 +49,20 @@
 
 #let Cov(value) = $text("Cov")(#value)$
 
-The Resnet18 model was trained on the CIFAR10 dataset for 20 epochs. 
-The learning rate was set to 0.01,
-and all other settings were left default.
-An A100 GPU was used in NSERC Perlmutter's shared queue.
-PyTorch Lightning was used for ease of training.
-Below is the trainng and validation accuracy over the 20 epochs.
 
-#image("Accuracy.png")
+In this assignment, we trained 2 different versions of Resnet18 on the CIFAR10 dataset.
+A node of 4 Nvidia A100 GPUs were used on NSERC's Perlmutter supercomputer for the training.
+Please see the attached Python files for training details.
+(Pytorch Lightning's DDP strategy was used for ease of usage.)
+
+The first version used data parallelism with 4 GPUs.
+We can plot the validation accuracy vs time.
+
+#image("val_acc_data_parallel.png")
+
+The second version used model parallelism with 2 GPUs.
+The model was split up into 2 parts
+\- 1 with 2.8 million parameters,
+and 1 with 8.4 million parameters.
+
+#image("val_acc_model_parallel.png")
