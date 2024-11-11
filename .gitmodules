@@ -1,0 +1,3 @@
+[submodule "Assignment 3/DeepSpeedExamples"]
+	path = Assignment 3/DeepSpeedExamples
+	url = https://github.com/microsoft/DeepSpeedExamples.git
