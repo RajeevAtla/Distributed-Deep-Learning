@@ -38,11 +38,17 @@ pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https
 
 I recommend downloading the pre-trained models before starting training to avoid potential issues with Huggingface when submitting a Slurm script.
 
-* First, ensure you have approval to access the model and then create an Access Token.
+* First, ensure you have approval to access the **meta-llama/Llama-3.1-8B-Instruct** model and then create an Access Token.
 
 * Using `huggingface-cli login` command to log in to your Huggingface account with the Access Token.
 
-* After logging in, you can proceed to download the pre-trained models.
+* After logging in, you can proceed to download the pre-trained models. The simpliest way is to download using the command below.
+
+```bash
+huggingface-cli download meta-llama/Llama-3.1-8B-Instruct
+```
+
+* After downloading, set ***model_name_or_path=meta-llama/Llama-3.1-8B-Instruct*** in your training script.
 
 ### 2.4 Prepare datasets
 
@@ -62,11 +68,11 @@ When you use your own dataset files and modify some data in them, pay attention 
 
 I made some modification in *main.py* file to implement checkpoint saving. And I also modified *utils* to accommodate the pre-trained LLaMA 3 model class. 
 
-I attached the *"main_ckpt.py"* and *"utils.py"* file below for your reference.
+I attached the *"main_ckpt.py"* and *"utils.py"* files for your reference.
 
-[main_ckpt.py](main_ckpt.py)
+Replace the DeepSpeedExamples/applications/DeepSpeed-Chat/training/step1_supervised_finetuning/main.py with [main_ckpt.py](main_ckpt.py).
 
-[utils.py](utils.py)
+Replace the DeepSpeedExamples/applications/DeepSpeed-Chat/dschat/utils/utils.py with [utils.py](utils.py).
 
 ## 3. Start to train!
 
@@ -78,7 +84,7 @@ Once everything is working well, **create a Slurm script** for submission. DeepS
 
 In this assignment, you only need to run for **100 steps**.
 
-Observe the loss changes and **plot a graph titled "Loss vs. Steps"** that demonstrates how the loss evolves during this period.
+Observe the loss changes and **plot a graph titled "Loss vs. Time"** that demonstrates how the loss evolves during this period.
 
 ##
 
